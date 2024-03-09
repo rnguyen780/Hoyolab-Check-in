@@ -25,8 +25,7 @@ def check_in(to_check_in, click_on, is_GI):
             for y in range(s.height):
                 if s.getpixel((x, y)) == (215, 132, 90):
                     ag.click(x, y)
-                    break
-            break
+                    return
     else:
         ag.time.sleep(5)
         ci_button = ag.locateOnScreen(click_on)
@@ -41,8 +40,8 @@ if __name__ == '__main__':
         ag.locateOnScreen('Check GI.png')
         check_in('GI.png', None, True)
         switch_tabs('Check GI.png', 'to HSR.png')
-        check_in('HSR.png', 'HSR Click.png', False) #switches to HSR check in
+        check_in('HSR.png', 'HSR Click 2.png', False) #switches to HSR check in
     except: #HSR check in
-        check_in('HSR.png', 'HSR Click.png', False)
+        check_in('HSR.png', 'HSR Click 2.png', False)
         switch_tabs('Check HSR.png', 'to GI.png')
         check_in('GI.png', None, True) #switches to Genshin check in
