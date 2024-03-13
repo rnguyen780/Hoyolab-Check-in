@@ -38,10 +38,11 @@ if __name__ == '__main__':
 
     try: #Genshin check in
         ag.locateOnScreen('Check GI.png')
-        check_in('GI.png', None, True)
-        switch_tabs('Check GI.png', 'to HSR.png')
-        check_in('HSR.png', 'HSR Click 2.png', False) #switches to HSR check in
-    except: #HSR check in
+    except Exception: #HSR check in
         check_in('HSR.png', 'HSR Click 2.png', False)
         switch_tabs('Check HSR.png', 'to GI.png')
         check_in('GI.png', None, True) #switches to Genshin check in
+    else:
+        check_in('GI.png', None, True)
+        switch_tabs('Check GI.png', 'to HSR.png')
+        check_in('HSR.png', 'HSR Click 2.png', False) #switches to HSR check in
