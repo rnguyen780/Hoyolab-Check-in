@@ -6,9 +6,7 @@ def to_click(button):
     ci_center = ag.center(button)
     ag.click(ci_center.x, ci_center.y)
 
-def switch_tabs(to_switch, go_to):
-    ag.hotkey('ctrl', 'shift', 'tab')
-    ag.time.sleep(1)
+def switch_games(to_switch, go_to):
     change_game = ag.locateOnScreen(to_switch)
     to_click(change_game)
     to_other = ag.locateOnScreen(go_to)
@@ -27,7 +25,7 @@ def check_in(to_check_in, click_on, is_GI):
                     ag.click(x, y)
                     return
     else:
-        ag.time.sleep(5)
+        ag.time.sleep(6)
         ci_button = ag.locateOnScreen(click_on)
         to_click(ci_button)
 
@@ -38,11 +36,10 @@ if __name__ == '__main__':
 
     try: #Genshin check in
         ag.locateOnScreen('Check GI.png')
-    except Exception: #HSR check in
-        check_in('HSR.png', 'HSR Click 2.png', False)
-        switch_tabs('Check HSR.png', 'to GI.png')
-        check_in('GI.png', None, True) #switches to Genshin check in
-    else:
-        check_in('GI.png', None, True)
-        switch_tabs('Check GI.png', 'to HSR.png')
-        check_in('HSR.png', 'HSR Click 2.png', False) #switches to HSR check in
+    except Exception:
+        switch_games('Check HSR.png', 'to GI.png')
+    check_in('GI 2.png', None, True)
+    ag.hotkey('ctrl', 'shift', 'tab')
+    ag.time.sleep(1)
+    switch_games('Check GI.png', 'to HSR.png')
+    check_in('HSR.png', 'HSR Click 2.png', False) #switches to HSR check in
